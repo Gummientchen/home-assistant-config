@@ -1,0 +1,130 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Zurich
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  base_url: !secret http_base_url
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+
+
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+################### USER INPUT ###################
+
+# MQTT
+mqtt:
+  broker: !secret mqtt_broker_host
+  username: !secret mqtt_broker_username
+  password: !secret mqtt_broker_password
+
+# Homematic
+homematic:
+  interfaces:
+    ip:
+      host: !secret homematic_host
+      port: !secret homematic_port
+      username: !secret homematic_username
+      password: !secret homematic_password
+      resolvenames: json
+  hosts:
+    ccu2:
+      host: !secret homematic_host
+      username: !secret homematic_username
+      password: !secret homematic_password
+      
+# UniFi Tracker
+device_tracker:
+  - platform: unifi
+    host: !secret device_tracker_host
+    username: !secret device_tracker_username
+    password: !secret device_tracker_password
+    verify_ssl: !secret device_tracker_ssl
+    detection_time: !secret device_tracker_detection
+    ssid_filter:
+      - !secret device_tracker_filter
+    new_device_defaults:
+      track_new_devices: True
+      
+# Harmony Hub
+remote:
+    platform: harmony
+    name: Wohnzimmer
+    host: !secret harmony_hub_host
+    
+# HIKVISION MJPEG
+camera:
+  - platform: mjpeg
+    name: !secret camera_name
+    mjpeg_url: !secret camera_url
+    username: !secret camera_username
+    password: !secret camera_password
+
+# UptimeRobot
+binary_sensor:
+  - platform: uptimerobot
+    api_key: u600355-982e073625f799455083deba
+
+################### END ###################
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

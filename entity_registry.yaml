@@ -1,0 +1,10 @@
+media_player.google_mini:
+  config_entry_id: 0467eb7d9056485dad8e976f4a79e3db
+  name:
+  platform: cast
+  unique_id: c8b27b78-2db4-aa4f-6217-1b6c33150942
+media_player.kd75xd8505:
+  config_entry_id: 0467eb7d9056485dad8e976f4a79e3db
+  name:
+  platform: cast
+  unique_id: 6d7875e6-ea86-d8b0-9d24-f2cfa70985c7
